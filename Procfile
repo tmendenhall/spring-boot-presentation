@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar  build/libs/gs-actuator-service-complete-0.1.0remo.jar
+web: java -Dserver.port=$PORT -jar  build/libs/spring-boot-service-0.1.0.jar
