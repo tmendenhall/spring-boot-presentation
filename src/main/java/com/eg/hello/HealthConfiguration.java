@@ -1,4 +1,4 @@
-package hello;
+package com.eg.hello;
 
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.context.annotation.Bean;

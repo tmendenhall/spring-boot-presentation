@@ -1,4 +1,4 @@
-package hello;
+package com.eg.hello;
 
 public class Greeting {
 
