@@ -13,12 +13,12 @@ public class HealthConfiguration {
 
 
     @Bean
-    public HealthIndicator createAllGoodHealthIndicator(){
+    public HealthIndicator AllGoodHealthIndicator(){
 
      return new StaticHealthIndicator();
     }
 
-    @Bean HealthIndicator createAllBadHealthIndicator() {
+    @Bean HealthIndicator AllBadHealthIndicator() {
       return new BadStaticHealthIndicator();
     }
 }
