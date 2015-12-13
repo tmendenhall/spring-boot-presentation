@@ -2,10 +2,9 @@ package com.eg.hello;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.CounterService;
 import org.springframework.boot.actuate.metrics.GaugeService;
-import org.springframework.format.datetime.standard.DateTimeContext;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.inject.Inject;
 import java.time.Instant;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -23,17 +23,22 @@ public class HelloWorldController {
 
     Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
 
-    @Autowired
+    @Inject // See build.gradle for JSR-330 Annotation addition
+    private Environment environment;
+
+    @Inject
     private CounterService counterService;
 
-    @Autowired
+    @Inject
     private GaugeService gaugeService;
 
-    private static final String template = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
 
     @RequestMapping(method=RequestMethod.GET)
     public ResponseEntity<?> sayHello(@RequestParam(value="name", required=false, defaultValue="Stranger") String name) {
+
+        String template = environment.getProperty("hello-world.message","Hello default, %s!");
+
         Greeting greeting = new Greeting(counter.incrementAndGet(), String.format(template,name));
         return new ResponseEntity<Greeting>(greeting, HttpStatus.OK);
     }
