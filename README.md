@@ -26,19 +26,21 @@ Based on Spring Boot 1.3.0-RELEASE
 * How to run tests
 
     ```./gradlew test```
+
 * Deployment instructions
 
     * Jar
 
     ```./gradlew assemble``` will produce a jar file in the build/libs directory
     execute with
+
     ```java -jar <jarfile.jar> --spring.profiles.active=<any desired profiles>```
 
     Default logging to the console
 
     * Heroku
 
-       Using the exising Procfile you can deploy directly to[Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
+       Using the exising Procfile you can deploy directly to [Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
 
 
 ### Who do I talk to? ###
