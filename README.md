@@ -9,7 +9,7 @@
   which has a lot of good documentation.
 
 * Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+Based on Spring Boot 1.3.0-RELEASE
 
 ### How do I get set up? ###
 
@@ -18,14 +18,28 @@
     * Includes a Procfile for Heroku deployment.
 
 * Configuration
+
+    application.yml and application-prod.yml for environment specific configuration
 * Dependencies
+
+  See build.gradle
 * How to run tests
+
+    ```./gradlew test```
 * Deployment instructions
 
-### Contribution guidelines ###
+    * Jar
 
-* Writing tests
-* Code review
+    ```./gradlew assemble``` will produce a jar file in the build/libs directory
+    execute with
+    ```java -jar <jarfile.jar> --spring.profiles.active=<any desired profiles>```
+
+    Default logging to the console
+
+    * Heroku
+
+       Using the exising Procfile you can deploy directly to[Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
+
 
 ### Who do I talk to? ###
 
