@@ -1,2 +1,7 @@
 hello-world:
     message: Hello from production, %s!
+
+management:
+  health:
+    diskspace:
+      enabled: false
