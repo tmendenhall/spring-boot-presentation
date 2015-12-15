@@ -9,12 +9,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.inject.Inject;
 import java.time.Instant;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Controller
@@ -56,6 +59,22 @@ public class HelloWorldController {
         gaugeService.submit("HelloWorldController.echoWord.elapsed",(Instant.now().getNano()-start.getNano()));
         return new ResponseEntity<Greeting>(echo,HttpStatus.ACCEPTED);
 
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/hello/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> sayPredefinedMessage(@PathVariable(value = "id") String id) {
+        counterService.increment("HelloWorldController.hello.id.GET");
+        Map<String, String> helloMessages = new HashMap<>();
+        helloMessages.put("1", "'ello");
+        helloMessages.put("2", "Morgan");
+        helloMessages.put("3", "top 'o the mornin");
+
+        String returnString = helloMessages.get(id);
+        if (returnString == null) {
+            return ResponseEntity.badRequest().build();
+        } else {
+            return ResponseEntity.ok(new Greeting(counter.incrementAndGet(), returnString));
+        }
     }
 
 }
