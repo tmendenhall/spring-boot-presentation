@@ -5,3 +5,8 @@ management:
   health:
     diskspace:
       enabled: false
+
+info:
+  build:
+    name: ${name}
+    version: ${jar.version}

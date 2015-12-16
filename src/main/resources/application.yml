@@ -7,3 +7,9 @@ management:
 
 hello-world:
     message: Hello, %s!
+
+info:
+  build:
+    name: spring-boot-service-dev
+    description: default description
+    version: 0.0.1-LOCAL

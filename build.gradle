@@ -32,6 +32,10 @@ dependencies {
     testCompile("junit:junit")
 }
 
+processResources {
+    expand(project.properties)
+}
+
 task stage dependsOn(build);
 
 task wrapper(type: Wrapper) {
