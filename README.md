@@ -2,7 +2,8 @@
 
 ### What is this repository for? ###
 
-* Quick summary
+* Summary
+
   Example code for a Spring Boot application using various aspects of the Spring-Boot-Actuator project.
 
   Moved here and updated from this original [fork](https://github.com/tmendenhall/gs-actuator-service)
