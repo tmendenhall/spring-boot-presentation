@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true" debug="true">
+
+    <springProfile name="prod">
+        <!-- <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+             <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                 <fileNamePattern>logfile.%d{yyyy-MM-dd}.log</fileNamePattern>
+                 <maxHistory>10</maxHistory>
+             </rollingPolicy>
+             <encoder>
+                 <charset>utf-8</charset>
+                 <Pattern>%d [%t] %-5p %c - %msg%n</Pattern>
+             </encoder>
+         </appender>
+
+         <appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
+             <queueSize>512</queueSize>
+             <appender-ref ref="FILE"/>
+         </appender> -->
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <charset>utf-8</charset>
+                <Pattern>%d [%t] %-5p %c - %msg%n %ex{full}</Pattern>
+            </encoder>
+        </appender>
+        <root level="WARN">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+
+        <logger name="org.springframework" level="INFO"/>
+    </springProfile>
+
+    <springProfile name="!prod">
+        <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+            <encoder>
+                <charset>utf-8</charset>
+                <Pattern>%d [%t] %-5p %c - %msg%n</Pattern>
+            </encoder>
+        </appender>
+
+        <root level="DEBUG">
+            <appender-ref ref="CONSOLE"/>
+        </root>
+
+        <logger name="org.springframework" level="WARN"/>
+    </springProfile>
+
+
+    <logger name="com.eg.hello" level="DEBUG"/>
+    <logger name="javax.activation" level="WARN"/>
+    <logger name="javax.xml.bind" level="WARN"/>
+    <logger name="ch.qos.logback" level="WARN"/>
+    <logger name="com.codahale.metrics" level="WARN"/>
+    <logger name="com.ryantenney" level="WARN"/>
+    <logger name="com.sun.xml.internal.bind" level="WARN"/>
+    <logger name="org.apache" level="WARN"/>
+    <logger name="org.apache.catalina.startup.DigesterFactory" level="OFF"/>
+    <logger name="org.bson" level="WARN"/>
+    <logger name="org.springframework.web" level="WARN"/>
+    <logger name="sun.rmi.transport" level="WARN"/>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+</configuration>
