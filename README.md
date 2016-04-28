@@ -54,6 +54,12 @@
 
        Using the exising Procfile you can deploy directly to [Heroku](https://devcenter.heroku.com/articles/deploying-spring-boot-apps-to-heroku)
 
+    * Docker
+        open a Docker Quickstart shell to fire up the virtual box docker machine
+        go to that command line and execute ./gradlew buildDocker to create an image for the build
+        (not not published only local)
+        docker images will show the image
+        docker run -p 8080:8080 -t dockerTest/spring-boot-service   (add more exposed ports for configuration)
 
 ### Contacts ###
 
